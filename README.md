@@ -1,272 +1,231 @@
 
-# Phase 3 Project Description
+### Project Description
+
+## TANZANIA WELL WATCH ML PREDICTION 
+
+AUTHOR - SHAWN J. IRUNGU
 
-Congratulations! You've made it through another _intense_ module, and now you're ready to show off your newfound Machine Learning skills
+WellWatch ML is a machine learning model for classifying water well functionality in Tanzania, originally developed as part of Taarifa Hackathon hosted at [Driven Data][https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/23/] where it placed 796 out of 18,373 competitors. This project served as a showcase of my ability to rapidly prototype impactful data science solutions under tight constraints, leveraging techniques like ML methods and use of specific key tools, e.g., Python, Scikit-learn, preprossessing to achieve performance metrics in predicting well status. This project demonstrates my end-to-end problem-solving skills, from hackathon-speed iteration to production-ready refinement.
 
-All that remains in Phase 3 is to put your new skills to use with another large project.
+### Overview
+This project seeks to build a Machine Learning classifier algorithm that can predict the condition of a water well (functional, functional-but-needs-repair, and non-functional), using data such as the kind of pump, when it was installed, the installer, the region, and so on.
 
-In this project description, we will cover:
+![image.png](attachment:image.png)
 
-* Project Overview
-* Deliverables
-* Grading
-* Getting Started
+### Business Understanding
+Tanzania is a country in East Africa known for its national parks and wild animals. The World Bank estimates its population at 65 million as of 2022 and its land size is about 947,303 km2 (365,756 sq mi).
 
-## Project Overview
+The country comprises many lakes, national parks, and in fact, Africa's highest point, Mount Kilimanjaro (5,895 m or 19,341 ft). Northeast Tanzania is mountainous, while the central area is part of a large plateau covered in grasslands.
 
-For this project, you will engage in the full data science process from start to finish, solving a **classification** problem using a **dataset of your choice**.
+However, like many other sub-Saharan African countries, Tanzania is a developing country struggling to provide adequate clean water for its bulging population that is growing at 3% per annum.
 
-### Business Problem and Data
+Extreme poverty rate was 44% in 2022 as the population continued to grow at 3% per year. This means an increasing population is not affording the basic quality of life.
 
-It is up to you to define a stakeholder, a business problem, and you are also responsible for choosing a dataset.
+#### GROUND WATER SITUATION IN TANZANIA
 
-For complete details, see [Phase 3 Project - Choosing a Dataset](https://github.com/learn-co-curriculum/dsc-phase-3-choosing-a-dataset).
+According to [Dr. Japhet J. Kashaigili](https://gw-africa.iwmi.org/wp-content/uploads/sites/23/2018/10/Country_Report-Tanzania.pdf) the hydrogeology of Tanzania has not been thoroughly studied and ground water development has concentrated mainly on shallow wells for domestic purposes over a wide part of the country. He also reports that up to 90% of pumps and other equipment used for water extraction fail due to a lack of repair and maintenance.
 
-### Key Points
+Various actors, such as the national and regional governments, religious organizations, and foreign cooperation agencies have established many water points around the country but they are hardly enough. What is worse is that a significant number of the water points are in need of repair while others have failed altogether
 
-#### Classification
+### Business Problem
+[Climate change](https://en.wikipedia.org/wiki/Geography_of_Tanzania) is exacerbating water scarcity in Tanzania, where extreme weather patterns — ranging from destructive rainfall to prolonged droughts — are disrupting water access. Despite these challenges, only 61% of Tanzanian households have access to basic water supply, while just 32% benefit from basic sanitation and 48% from basic hygiene [World Bank](https://www.worldbank.org/en/country/tanzania/publication/tanzania-economic-update-universal-access-to-water-and-sanitation-could-transform-social-and-economic-development). Poor water infrastructure contributes to approximately 31,000 preventable deaths annually, imposing a heavy economic burden on the country.
 
-Recall the distinction between *classification* and *regression* models:
+The cost of water projects remains a critical barrier. A single hand-pump well, serving 600–700 people, requires an investment of $6,000–$8,000, while mechanized systems cost at least $12,000. Worse, up to 90% of water pumps fail prematurely due to inadequate maintenance, leaving communities without reliable access.
 
- * Classification is used when the target variable is a *category*
- * Regression is used when the target variable is a *numeric value*
+To address this crisis, Tanzania must prioritize sustainable installation practices and proactive maintenance of existing water systems. By leveraging data-driven solutions, we can optimize resource allocation and extend the lifespan of water infrastructure. 
 
-(Categorical data may be represented in the data as numbers, e.g. 0 and 1, but they are not truly numeric values. If you're unsure, ask yourself "is a target value of 1 _one more than_ a target value of 0"; if it is one more, that is a regression target, if not, that is a classification target.)
+I am committed to partnering with the Tanzanian government to tackle this challenge - ensuring clean, safe, and reliable water for millions.
 
-You will have additional opportunities to work on regression problems in later phases, but **for this project, you must be modeling a classification problem**.
+### Business Objective
+My main objectives in this project will be:
 
-#### Findings and Recommendations
+> To build a Machine Learning classifier that will predict the condition of a water well (functional, functional-but-needs-repair, and non-functional), using data such as the kind of pump, when it was installed, the installer, the region, and so on.
 
-In the previous two projects, the framing was primarily *descriptive* and *inferential*, meaning that you were trying to understand the distributions of variables and the relationship between them. For this project you can still use these techniques, but make sure you are also using a ***predictive*** approach.
+> To help the Government of Tanzania find patterns in functional and non-functional wells, to help influence how new wells are built.
 
-A predictive *finding* might include:
+> To find the most important factors that influence whether a pump is functional, functional-but-needs-repair, or non-functional. This can guide the management of new and existing water wells.
 
-* How well your model is able to predict the target
-* What features are most important to your model
+### STUDY QUESTIONS
+1. Predictive Feasibility
+"Can we accurately predict a water pump's operational status (functional, functional-but-needs-repair, or non-functional) using features such as pump type, installation date, installer, geographical region, and related variables?"
 
-A predictive *recommendation* might include:
+2. Key Influencing Factors
+"Which 20 features have the strongest correlation with a pump's operational status? How do factors like pump model, maintenance history, or environmental conditions impact functionality?"
 
-* The contexts/situations where the predictions made by your model would and would not be useful for your stakeholder and business problem
-* Suggestions for how the business might modify certain input variables to achieve certain target results
+3. Geographical Trends
+"How are functional, non-functional, and repair-needing pumps distributed across regions? Are there spatial patterns (e.g., clusters of non-functional pumps in arid areas)?"
 
-#### Iterative Approach to Modeling
+### DATA UNDERSTANDING
+The relevant datasets for have been provided on the Driven Data website which is hosting a competition for this project.
+Data for the dependent variable in the test dataset has not been provided, therefore, I will make use of Training set values and Training set labels datasets.
+**Training Data Features**
+The training dataset contains 59,400 waterpoints in Tanzania and the following 39 features:
 
-You should demonstrate an iterative approach to modeling. This means that you must build multiple models. Begin with a basic model, evaluate it, and then provide justification for and proceed to a new model. After you finish refining your models, you should provide 1-3 paragraphs in the notebook discussing your final model.
+| Column           | Description                                                                                       |
+|------------------|---------------------------------------------------------------------------------------------------|
+| amount_tsh       | Total static head (amount water available to waterpoint)                                      |
+| date_recorded    | Date on which the row was recorded                                                       |
+| price            | Individual or organization that funded installation of the well                                   |
+| gps_height       | The altitude at which the water pump is located                                                   |
+| installer        | Individual or organization that installed the well                                                |
+| longitude        | Longitude coordinates of the water point                                                          |
+| latitude         | Latitude coordinates of the water point                                                           |
+| wpt_name         | Name of the waterpoint if there is one                                                            |
+| num_private      | Information about this feature is unavailable                                                     |
+| basin            | Name of the geographic water basin                  |
+| subvillage       | Geographic location                                                                    |
+| region           | Geographic location                     |
+| region_code      | Coded geographic location                                              |
+| district_code    | Coded geographic location                                                                    |
+| lga              | Geographic location                                                                          |
+| ward             | Geographic location                       |
+| population       | Population around the well                                                                     |
+| public_meeting   | Boolean data whether public meeting for the water pump was conducted                              |
+| recorded_by      | Name of agency which recorded the water pump data                                                 |
+| scheme_management| Name of scheme that manages the waterpoint                    |
+| scheme_name      | Name of scheme under which the water point was established                                       |
+| permit           | Boolean data describing whether the water point has permit available or not                  |
+| contruction_year | Year in which the water point was constructed                                             |
+| extraction_type  | The kind of extraction the waterpoint uses                       |
+| extraction_type_group        | The kind of extraction the waterpoint uses                               |
+| extraction_type_class      | The kind of extraction the waterpoint uses                                            |
+| management       | Name of organization/authority that manages the water point                    |
+| managememt_group | Category of organization/authority that manages the water point                       |
+| payment          | Describes how residents pay for water                                       |
+| payment_type     | Describes how residents pay for water                  |
+| water_quality    | The quality of water                                                                    |
+| quality_group    | The quality of water                     |
+| quantity         | The quantity of water                                               |
+| quantity_group   | The quantity of water                                                                    |
+| source           | The source of water                                                                          |
+| source_type      | The source of water                       |
+| source_class     | The source of water                                                                     |
+| waterpoint_type  | The nature of water point                           |
+| waterpoint_type_group  | The nature of water point                        |  
 
-With the additional techniques you have learned in Phase 3, be sure to explore:
 
-1. Model features and preprocessing approaches
-2. Different kinds of models (logistic regression, decision trees, etc.)
-3. Different model hyperparameters
+### Methodology
 
-At minimum you must build two models:
+#### Data Understanding and Cleaning
+I explored the datasets to understand their schema, size, data types, and examine the presence of invalid or inconsistent data such as missing values, duplicates, placeholders, and outliers.
 
-* A simple, interpretable baseline model (logistic regression or single decision tree)
-* A version of the simple model with tuned hyperparameters
+#### Data Analysis
+I analyzed the relationship between the continuous and categorical predictor variables and pump condition, which is the response variable.
 
-#### Classification Metrics
+#### Data Visualization
+I used various visualization methods such as bar plots, histograms, scatter plots, and Folium maps to display descriptive statistics and facilitate interpretation.
 
-**You must choose appropriate classification metrics and use them to evaluate your models.** Choosing the right classification metrics is a key data science skill, and should be informed by data exploration and the business problem itself. You must then use this metric to evaluate your model performance using both training and testing data.
+#### Machine Learning Modelling
+I built different machine learning models and evaluated their performance to pick the best based on performance scores and whether it was fitting the data appropriately (without underfitting or overfitting).
 
-## Deliverables
+### Findings
 
-There are three deliverables for this project:
+#### Relationship Between Pump Functionality and Continuous Variables
 
-* A **non-technical presentation**
-* A **Jupyter Notebook**
-* A **GitHub repository**
+![density_of_target_class_vs_continuous_features](\images/density_of_target_class_vs_continuous_features.jpg)
 
-### Non-Technical Presentation
+For the total static head feature (amount_tsh), waterpoints with zero static head have the highest density of pumps overall. Also, among the three pump classes at this point, non-functional pumps have the highest density followed by functional pumps. Functional-needs-repair pumps are the least.
 
-Recall that the non-technical presentation is a slide deck presenting your analysis to ***business stakeholders***, and should be presented live as well as submitted in PDF form on Canvas.
+For the population feature, waterpoints located in areas with zero population have the highest density of pumps overall. Also, among the three pump classes at this point, non-functional pumps have the highest density followed by functional pumps. Functional-needs-repair pumps are the least.
 
-We recommend that you follow this structure, although the slide titles should be specific to your project:
+For the construction year feature, the year 1955 has a high density of pumps, but these are the year 0 rows which I imputed with 1955. The KDE plot also shows that the density of functional pumps is higher among the newest pumps while non-functional pumps are higher among the older pumps, from around 1965 to 1990.
 
-1. Beginning
-    - Overview
-    - Business and Data Understanding
-2. Middle
-    - Modeling
-    - **Evaluation**
-3. End
-    - Recommendations
-    - Next Steps
-    - Thank you
 
-Make sure that your discussion of classification modeling is geared towards a non-technical audience! Assume that their prior knowledge of machine learning is minimal. You don't need to explain the details of your model implementations, but you should explain why classification is useful for the problem context. Make sure you translate any metrics or feature importances into their plain language implications.
+#### Total Static Head against Pump Condition
 
-The graded elements for the non-technical presentation are the same as in [Phase 1](https://github.com/learn-co-curriculum/dsc-phase-1-project-v3#deliverables) and [Phase 2]((https://github.com/learn-co-curriculum/dsc-phase-2-project-v3#deliverables)).
+![Total Static Against Conditions of the Pump](images/box_plot_total_static_head_by_pump_condition.png)
 
-### Jupyter Notebook
+we see that the more spending on well , the well is functional and the less spendings the well is either non-functional or needs repair
 
-Recall that the Jupyter Notebook is a notebook that uses Python and Markdown to present your analysis to a ***data science audience***. You will submit the notebook in PDF format on Canvas as well as in `.ipynb` format in your GitHub repository.
+#### Relationship Between Pump Functionality and Categorical Variables
 
-The graded elements for the Jupyter Notebook are:
+![target classes against Categorical features](images/distribution_of_target_class_vs_categorical_features.jpg)
 
-* Business Understanding
-* Data Understanding
-* Data Preparation
-* Modeling
-* **Evaluation**
-* Code Quality
 
-### GitHub Repository
+From the different visualizations of categorical variables, we notice that some classes of categories are more popular than others. For example, Iringa and Kilimanjaro regions have the highest number of pumps. The never-pay payment scheme is most popular and over 40,000 out of 59,400 wells have soft water quality.
 
-Recall that the GitHub repository is the cloud-hosted directory containing all of your project files as well as their version history.
+From the distribution of pump functionality class for each class of a categorical variable, we notice that the functional pumps are more frequent than functional-needs-repair and non-functional pumps.
 
-The requirements are the same as in [Phase 1](https://github.com/learn-co-curriculum/dsc-phase-1-project-v3#github-repository) and [Phase 2](https://github.com/learn-co-curriculum/dsc-phase-2-project-v3#github-repository), except for the required sections in the `README.md`.
+A notable deviation from this trend is the never-pay class of the payment-type category, where non-functional pumps are more than the other classes of pumps.
 
-For this project, the `README.md` file should contain:
+### Final ML Model
 
-* Overview
-* Business and Data Understanding
-  * Explain your stakeholder audience and dataset choice here
-* Modeling
-* **Evaluation**
-* Conclusion
+![XGBoost](images/image-1.png)
 
-Just like in Phase 1 and 2, the `README.md` file should be the bridge between your non technical presentation and the Jupyter Notebook. It should not contain the code used to develop your analysis, but should provide a more in-depth explanation of your methodology and analysis than what is described in your presentation slides.
+![confusion Matrix -XGBoost](images/confmatrix.png)
 
-## Grading
+We conclude that XGBoost will be final model since the difference in metrics between train set and test set is 0.04 which is a tiny effect to say that our model is overfitting. It performed well with high metrics than other models, has an accuracy score of 0.7968 and a f1 score of 0.7845 on test set, an accuracy score of 0.829 and a f1 score of 0.819 on train set, we are going to use F1 score as our metric since our target classes were imbalanced and thus 0.7845 is a high scoring from all models we created.
 
-***To pass this project, you must pass each project rubric objective.*** The project rubric objectives for Phase 3 are:
+### AUC & ROC Curve analysis comparing all models
 
-1. ML Communication
-2. Data Preparation for Machine Learning
-3. Nonparametric and Ensemble Modeling
+![alt text](<images/AUC-ROC Curve analysis.jpg>)
 
-### ML Communication
+From the above visuals, XGBoost shows to be the best model since the 3 class shows a fpr tpr tradeoff close to 1.0 at TPR(true positive rate) compared to other models.
 
-Recall that communication is one of the key data science "soft skills". In Phase 3, we are specifically focusing on ML Communication. We define ML Communication as:
+Comparing Test set and Train test, Logistic Regression model shows underfitting while Tuned Decision Tree model doesn`t neither shows overfitiing nor underfitting compared to both train set and test set, however its metrics are so low and this makes us decide to select XGBoost which has high metrics.
 
-> Communicate the **performance** of and **insights** generated by machine learning models to diverse audiences via writing, live presentation, and visualization
+We conclude that XGBoost will be final model since the difference in metrics between train set and test set is 0.04 which is a tiny effect to say that our model is overfitting. It performed well with high metrics than other models, has an accuracy score of 0.7968 and a f1 score of 0.7845 on test set, an accuracy score of 0.829 and a f1 score of 0.819 on train set, we are going to use F1 score as our metric since our target classes were imbalanced and thus 0.7845 is a high scoring from all models we created.
 
-High-quality ML Communication includes rationale, results, limitations, and recommendations:
+Below are XGBoost metrics comparison
 
-* **Rationale:** Explaining why you are using machine learning rather than a simpler form of data analysis
-  * What about the problem or data is suitable for this form of analysis?
-  * For a data science audience, this includes your reasoning for the changes you applied while iterating between models.
-* **Results:** Describing the classification metrics
-  * You can report multiple metrics for a single model, but make sure that indicate a reason for which metrics you are using (and don't try to use all of them at once)
-  * For a business audience, make sure you connect any metrics to real-world implications. You do not need to get into the details of how the model works.
-  * For a data science audience, you don't need to explain what a metric is, but make sure you explain why you chose that particular one.
-* **Limitations:** Identifying the limitations and/or uncertainty present in your analysis
-  * Are there certain kinds of records where model performance is worse? If you used this model in production, what kinds of problems might that cause?
-  * In general, this should be more in-depth for a data science audience and more surface-level for a business audience.
-* **Recommendations:** Interpreting the model results and limitations in the context of the business problem
-  * What should stakeholders _do_ with this information?
+MODEL METRICS - TRAIN SET 
 
-#### Exceeds Objective
+Overall accuracy score 0.8293350168350169
 
-Communicates the rationale, results, limitations, and specific recommendations generated by a classification model
+Overall precision score 0.8319071109633489
 
-> See above for an extended explanation of these terms.
+Overall recall score 0.8293350168350169
 
-#### Meets Objective (Passing Bar)
+Overall F1-score 0.8186159596319987
 
-Successfully communicates model metrics without any major errors
 
-> The minimum requirement is to communicate the _results_, meaning at least one overall model metric for your final model. See the Approaching Objective section for an explanation of what a "major error" means.
+MODEL METRICS - TEST SET
 
-#### Approaching Objective
+Overall accuracy score 0.7968013468013468
 
-Communicates model metrics with at least one major error
+Overall precision score 0.793916660876027
 
-> A major error means that some aspect of your explanation is fundamentally incorrect. For example, if you report a regression metric for a classification model, that would be a major error. Another example would be if you report the model's performance on the training data, rather than the model's performance on the test data.
+Overall recall score 0.7968013468013468
 
-#### Does Not Meet Objective
+Overall F1-score 0.7844948789304663
 
-Does not communicate model metrics
 
-> It is not sufficient just to display the `classification_report` or confusion matrix for a given model. You need to focus on one or more specific metrics that are important for your business case.
+### 20 Important Features from our Model
 
-### Data Preparation for Machine Learning
+![Iportant Features](<images/Top 20 Important Features on Modelling.jpg>)
 
-We define this objective as:
+Some of the top features influencing a prediction include:
 
-> Applying appropriate preprocessing and feature engineering steps to tabular data in preparation for predictive modeling
+i.) quantity-group (the quantity of water)
 
-You still to ensure that you have a strategy for dealing with missing and non-numeric data.
+ii.) The water point type
 
-For the Phase 3 project, make sure you also consider:
+iii.) The extraction type class
 
-* **Preventing Data Leakage:** As you prepare data for modeling, make sure that you are correctly applying data preparation techniques so that your model's performance on test data realistically represents how it would perform on unseen data. For scikit-learn transformers specifically, ***make sure that you do not fit the transformer on the test data***. Instead, fit the transformer on the training data and use it to transform both the train and test data.
-* **Scaling:** If you are using a distance-based model algorithm (e.g. kNN or logistic regression with regularization), make sure you scale your data prior to fitting the model.
+iv.) The basin
 
-Feature engineering is encouraged but not required for this project.
+v.) scheme management
 
-#### Exceeds Objective
+vi.) The installer
 
-Goes above and beyond with data preparation, such as feature engineering or using pipelines
+vii.) payment type
 
-> Relevant examples of feature engineering will depend on your choice of dataset and business problem.
+### CONCLUSION
+For the total static head feature (amount_tsh), waterpoints with zero static head have the highest density of pumps overall. Also, among the three pump classes at this point, non-functional pumps have the highest density followed by functional pumps. Functional-needs-repair pumps are the least.
 
-> Pipelines are the best-practice approach to data preparation that avoids leakage, but they can get complicated very quickly. We therefore do not recommend that you use pipelines in your initial modeling approach, but rather that you refactor to use pipelines if you have time.
+From the box plot of total_static_head vs. pump condition, we can see that the pumps having tsh above approx.125,000 are all functional. High static head may be an important feature because the higher the tsh the higher the probabilty of a pump being functional.
 
-#### Meets Objective (Passing Bar)
+For the population feature, waterpoints located in areas with zero population have the highest density of pumps overall. Also, among the three pump classes at this point, non-functional pumps have the highest density followed by functional pumps. Functional-needs-repair pumps are the least.
 
-Successfully prepares data for modeling, using a final holdout dataset that is transformed by (but not fitted on) transformers used to prepare training data AND scaling data when appropriate
+For the construction year feature, the year 1955 has a high density of pumps, but these are the year 0 rows which I imputed with 1955. 
 
-> See the descriptions above for explanations of how to use transformers and scaling.
+A KDE (kernel density estimation) plot shows that the density of functional pumps is higher among the newest pumps while non-functional pumps are higher among the older pumps, at 1955, 1980 and around 2010.
 
-#### Approaching Objective
 
-Prepares some data successfully, but has at least one major error
+### RECOMMENDATION
+I advise the Goverment of Tanzania to apply my final model in predicting the condition of well pumps across Tanzania. It will help them to correctly predict the actual condition of each pump at at least 80% success rate.
 
-> A major error means that some aspect of your data preparation is fundamentally incorrect. Some examples of major errors include: (1) fitting transformers on test data, (2) not performing a train-test split, (3) not scaling data that is used in a distance-based model.
+The government will need to implement and operationalize a payment scheme for the water points, having observed that the sites where people never pay for water had the highest frequency of non-functional pumps.
 
-#### Does Not Meet Objective
+Finding out if there is more data that can balance the target classes. The current classes are imbalanced with the most frequent class comprising 37.2% of the data while the least class comprises only 4.42%. This affected the prediction score of the least class compared to the other classes. Availability of more data that can balance the classes would realize much better prediction scores.
 
-Does not prepare data for modeling
-
-> This includes projects where data is partially prepared, but the model is unable to run.
-
-### Nonparametric and Ensemble Modeling
-
-Your project should consider the different types of models that have been covered in the course so far and whether they are appropriate or inappropriate for the dataset and business case you are working with.
-
-Your final model can still be a linear model (e.g. logistic regression) but you should explore at least one nonparametric model (e.g. decision tree) as well and articulate why one or the other is a better approach.
-
-#### Exceeds Objective
-
-Goes above and beyond in the modeling process, such as articulating why a given model type is best suited to the problem or correctly using scikit-learn models not covered in the curriculum
-
-> Another way you might go above and beyond would be to create custom Python classes, possibly inheriting from scikit-learn classes.
-
-#### Meets Objective (Passing Bar)
-
-Uses at least two types of scikit-learn model and tunes at least one hyperparameter in a justifiable way without any major errors
-
-> See the "Iterative Approach to Modeling" section above for a more-lengthy explanation.
-
-> Once again, ideally you would include written justifications for each model iteration, but at minimum the iterations must be _justifiable_.
-
-> For an explanation of "major errors", see the description under "Approaching Objective".
-
-#### Approaching Objective
-
-Builds multiple classification models with at least one major error
-
-> A major error means that some aspect of your modeling approach is fundamentally incorrect.
-
-> Once again, the number one major error to avoid is including the target as one of your features. If you are getting metrics that are "too good to be true", make sure that you removed the target (`y`) from your data before fitting the model.
-
-> Other examples of major errors include: using a numeric target value (since this is a classification project), not starting with a baseline model (e.g. proceeding directly to a Random Forest model), or not tuning hyperparameters in a justifiable way (e.g. reducing regularization on a model that is overfitting)
-
-#### Does Not Meet Objective
-
-Does not build multiple classification models
-
-## Getting Started
-
-Please start by reviewing the contents of this project description. If you have any questions, please ask your instructor ASAP.
-
-Once you are ready to begin the project, you will need to complete the Project Proposal.
-
-Recall that more information is available in [Phase 3 Project - Choosing a Dataset](https://github.com/learn-co-curriculum/dsc-phase-3-choosing-a-dataset).
-
-To get started with project development, create a new repository on GitHub. For this project, we recommend that you do not fork the template repository, but rather that you make a new repository from scratch, starting by going to [github.com/new](https://github.com/new).
-
-## Summary
-
-This project is an opportunity to expand your data science toolkit by evaluating, choosing, and working with new datasets. Spending time up front making sure you have a good dataset for a solvable problem will help avoid the major problems that can sometimes derail data science projects. You've got this!
