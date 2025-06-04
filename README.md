@@ -5,12 +5,11 @@
 
 AUTHOR - SHAWN J. IRUNGU
 
-WellWatch ML is a machine learning model for classifying water well functionality in Tanzania, originally developed as part of Taarifa Hackathon hosted at [Driven Data][https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/23/] where it placed 796 out of 18,373 competitors. This project served as a showcase of my ability to rapidly prototype impactful data science solutions under tight constraints, leveraging techniques like ML methods and use of specific key tools, e.g., Python, Scikit-learn, preprossessing to achieve performance metrics in predicting well status. This project demonstrates my end-to-end problem-solving skills, from hackathon-speed iteration to production-ready refinement.
+WellWatch ML is a machine learning model for classifying water well functionality in Tanzania, originally developed as part of Taarifa Hackathon hosted at [Driven Data](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/23/) where it placed 796 out of 18,373 competitors. This project served as a showcase of my ability to rapidly prototype impactful data science solutions under tight constraints, leveraging techniques like ML methods and use of specific key tools, e.g., Python, Scikit-learn, preprossessing to achieve performance metrics in predicting well status. This project demonstrates my end-to-end problem-solving skills, from hackathon-speed iteration to production-ready refinement.
 
 ### Overview
 This project seeks to build a Machine Learning classifier algorithm that can predict the condition of a water well (functional, functional-but-needs-repair, and non-functional), using data such as the kind of pump, when it was installed, the installer, the region, and so on.
-
-![image.png](attachment:image.png)
+![Well Photo](images/well.png)
 
 ### Business Understanding
 Tanzania is a country in East Africa known for its national parks and wild animals. The World Bank estimates its population at 65 million as of 2022 and its land size is about 947,303 km2 (365,756 sq mi).
@@ -122,7 +121,7 @@ I built different machine learning models and evaluated their performance to pic
 
 #### Relationship Between Pump Functionality and Continuous Variables
 
-![density_of_target_class_vs_continuous_features](\images/density_of_target_class_vs_continuous_features.jpg)
+![Distribution of Pump Functionarity](images/density_of_target_class_vs_continuous_features.jpg)
 
 For the total static head feature (amount_tsh), waterpoints with zero static head have the highest density of pumps overall. Also, among the three pump classes at this point, non-functional pumps have the highest density followed by functional pumps. Functional-needs-repair pumps are the least.
 
